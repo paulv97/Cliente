@@ -25,10 +25,11 @@ public class HiloConexion  extends Thread{
     ServerInt servidor;
     TrackerInt tracker;
     String fileName;
-    int k,numConjuntos,i;
+    int k,numConjuntos;
+    Integer i;
     Cliente cliente;
     String ipTracker = "";
-    public HiloConexion(String ipServer, TrackerInt tracker,String fileName, int k,Cliente cliente,int numConjuntos, int i){
+    public HiloConexion(String ipServer, TrackerInt tracker,String fileName, int k,Cliente cliente,int numConjuntos, Integer i){
         this.ipServer = ipServer;
         this.tracker = tracker;
         this.fileName = fileName;
@@ -55,6 +56,8 @@ public class HiloConexion  extends Thread{
             } catch (Exception ex) {
                 try {
                     ipServer = tracker.getAltAddress(0, fileName);
+                    HiloConexion hilo = new HiloConexion(ipServer,tracker,fileName,k,cliente,numConjuntos,i);
+                    hilo.start();
                 }catch (RemoteException e){ }
                 //ex.printStackTrace();
             } 
