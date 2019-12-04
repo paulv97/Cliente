@@ -14,7 +14,7 @@ public class HiloControlArchivo extends Thread{
     TrackerInt tracker;
     BufferedOutputStream bosS;
     BufferedOutputStream bosC;
-
+    public double porcentaje;
     public HiloControlArchivo(Map<Integer, Object[]> map, int numPartes, String fileName, TrackerInt tracker) {
         this.map = map;
         this.numPartes = numPartes;
@@ -38,6 +38,12 @@ public class HiloControlArchivo extends Thread{
                 if ((array = map.get(i)) != null) {
                     bosC.write((byte[])array[0],0,(int) array[1]);
                     bosS.write((byte[])array[0],0,(int) array[1]);
+                    long actualSize=newFile.length();
+
+                    porcentaje= (actualSize*100)/numPartes;
+
+                    if(i==numPartes)
+                        porcentaje=100;
                     i++;
                 } else {
                     continue;

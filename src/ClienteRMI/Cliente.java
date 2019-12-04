@@ -66,6 +66,9 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
             }
             HiloControlArchivo hiloCA = new HiloControlArchivo(map,numParts,FileName,tracker);
             hiloCA.start();
+            while (hiloCA.isAlive())
+                System.out.println(hiloCA.porcentaje+"%");
+            //hiloCA.porcentaje
         }catch (Exception e){
             
         }

@@ -14,14 +14,19 @@ import java.rmi.server.UnicastRemoteObject;
 public class Server extends UnicastRemoteObject implements ServerInt {
     BufferedInputStream archivo_enviar;
     final int bytesize=60000;
+    private Object FileNotFoundException;
+
     public Server () throws RemoteException {}
     byte[] sendBytes;
     int in;
     boolean situacion_archivo;
 
     @Override
-    public synchronized void transferGroup(ClientInt client, int k, Integer i, int numPeers, String fileName) throws RemoteException {
+    public synchronized void transferGroup(ClientInt client, int k, Integer i, int numPeers, String fileName) throws RemoteException,FileNotFoundException {
         final File localFile = new File( "./.clonedFiles/"+fileName);
+        if (!localFile.exists()){
+            throw new FileNotFoundException();
+        }
         sendBytes = new byte[bytesize];
         try {
             archivo_enviar = new BufferedInputStream(new FileInputStream(localFile));
@@ -51,8 +56,6 @@ public class Server extends UnicastRemoteObject implements ServerInt {
                     continue;
                 }
             }
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
