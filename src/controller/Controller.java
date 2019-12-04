@@ -5,8 +5,28 @@
  */
 package controller;
 
+import static C_S_RMI.main.IP;
+import ClienteRMI.Cliente;
+import RemoteInterface.ServerInt;
+import RemoteInterface.TrackerInt;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.MalformedURLException;
+import java.net.UnknownHostException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import view.TorrentView;
 
 /**
@@ -15,7 +35,10 @@ import view.TorrentView;
  */
 public class Controller implements ActionListener {
     private TorrentView view;
-    
+    private ServerInt servidor;
+    private final String ipTracker="";
+    private TrackerInt tracker;
+    private Cliente cliente;
     public Controller(TorrentView view) {
         this.view = view;
     }
@@ -29,6 +52,23 @@ public class Controller implements ActionListener {
         this.view.btnSeleccionarArchivoTorrent.addActionListener(this);
         this.view.setLocationRelativeTo(null);
         this.view.setVisible(true);
+        this.view.txtNombreTorrent.setEditable(false);
+        this.view.btnNombreTorrent.setVisible(false);
+        this.view.btnSeleccionarArchivo.setVisible(false);
+        this.view.btnDestinoArchivo.setVisible(false);
+        try {
+            servidor = (ServerInt) Naming.lookup("rmi://"+InetAddress.getLocalHost().getHostAddress());
+            tracker = (TrackerInt)Naming.lookup("rmi://"+ipTracker);
+            cliente = new Cliente(tracker);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NotBoundException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RemoteException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -40,28 +80,28 @@ public class Controller implements ActionListener {
             crearTorrent();
         
         if(e.getSource() == this.view.btnDescargar) 
-            descargar();
+            //descargar();
         
         if(e.getSource() == this.view.btnDestinoArchivo) 
             seleccionarDestinoTorrent();
         
-        if(e.getSource() == this.view.btnNombreTorrent) 
-            ingresarNombreTorrent();
+        /*if(e.getSource() == this.view.btnNombreTorrent) 
+            ingresarNombreTorrent("torrent");*/
         
         if(e.getSource() == this.view.btnSeleccionarArchivoTorrent) 
             seleccionarArchivoTorrent();
     }
     
     private void seleccionarArchivo() {
-        
+       
     }
     
     private void crearTorrent() {
-        
+        cliente.createTorrent(view.txtArchivo,view.txtNombreTorrent);
     }
     
-    private void descargar() {
-        
+    private void descargar(String pathArchivo) {
+        cliente.download(pathArchivo);
     }
     
     private void seleccionarDestinoTorrent() {
@@ -75,4 +115,6 @@ public class Controller implements ActionListener {
     private void seleccionarArchivoTorrent() {
         
     }
+    
+    
 }
