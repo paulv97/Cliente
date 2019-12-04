@@ -106,7 +106,7 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
         }
     }
     
-    public String selectFile(String[] optionalName){
+    public String selectFile(){
         JFrame parent = new JFrame("Elegir torrent");
         JFileChooser jf = new JFileChooser();
         jf.setCurrentDirectory(new File(System.getProperty("user.home")));
@@ -115,7 +115,7 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
         int result = jf.showOpenDialog(parent);
         //preguntar si da igual donde este file torrent
         if (result == JFileChooser.APPROVE_OPTION) {
-            optionalName[0] = jf.getSelectedFile().getName();
+            //optionalName[0] = jf.getSelectedFile().getName();
             //copyFile(jf.getSelectedFile().getPath(), name);
             return jf.getSelectedFile().getPath();
             //download(path);

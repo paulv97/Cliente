@@ -39,6 +39,7 @@ public class Controller implements ActionListener {
     private final String ipTracker="";
     private TrackerInt tracker;
     private Cliente cliente;
+    private String path ;
     public Controller(TorrentView view) {
         this.view = view;
     }
@@ -73,16 +74,16 @@ public class Controller implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == this.view.btnSeleccionarArchivo) 
-            seleccionarArchivo();
+        /*if(e.getSource() == this.view.btnSeleccionarArchivo) 
+            seleccionarArchivo();*/
         
         if(e.getSource() == this.view.btnCrearTorrent) 
             crearTorrent();
         
         if(e.getSource() == this.view.btnDescargar) 
-            //descargar();
+            descargar();
         
-        if(e.getSource() == this.view.btnDestinoArchivo) 
+       /* if(e.getSource() == this.view.btnDestinoArchivo) 
             seleccionarDestinoTorrent();
         
         /*if(e.getSource() == this.view.btnNombreTorrent) 
@@ -92,16 +93,21 @@ public class Controller implements ActionListener {
             seleccionarArchivoTorrent();
     }
     
-    private void seleccionarArchivo() {
+   /* private void seleccionarArchivo() {
        
-    }
+    }*/
     
     private void crearTorrent() {
         cliente.createTorrent(view.txtArchivo,view.txtNombreTorrent);
     }
     
-    private void descargar(String pathArchivo) {
-        cliente.download(pathArchivo);
+    private void descargar() {
+        if (!path.equals("")){
+            cliente.download(path);
+        }else{
+            JOptionPane.showMessageDialog(null, "NO HA SELECCIONADO ARCHIVO TORRENT","SIN TORRENT", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }
     
     private void seleccionarDestinoTorrent() {
@@ -113,7 +119,8 @@ public class Controller implements ActionListener {
     }
     
     private void seleccionarArchivoTorrent() {
-        
+        path =  cliente.selectFile();
+        view.txtArchivoTorrent.setText(path);
     }
     
     
