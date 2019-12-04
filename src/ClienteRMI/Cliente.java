@@ -47,7 +47,7 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
         this.tracker = tracker;
     }
 
-    public void startDownload(String IPNAme,String FileName,String hash,Map<Integer, Object[]> map){
+    public void startDownload(String IPNAme,String FileName,String hash,Map<Integer, Object[]> map,int numParts){
         this.hash=hash;
         this.FileName = FileName;
         this.map = map;
@@ -58,6 +58,8 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
                 HiloConexion hilo = new HiloConexion(dir[k],tracker,FileName,k,this,dir.length,0);
                 hilo.start();
             }
+            HiloControlArchivo hiloCA = new HiloControlArchivo(map,numParts,FileName,tracker);
+            hiloCA.start();
         }catch (Exception e){
             
         }
@@ -165,13 +167,15 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
                 String fileName = to.readLine();
                 //Obtencion cadena hash para control de integridad
                 String hash = to.readLine();
+                //Obtencion numero de partes
+                int numParts = Integer.parseInt(to.readLine());
                 to.close();
                 //Cliente client = new Cliente(fileName,map,hash);
 
                 InetAddress address = InetAddress.getLocalHost();
                 Naming.rebind("rmi://"+IP+"/"+address.getHostAddress(),this);
                 System.out.println("Cliente remoto listo");
-                this.startDownload(IP+"/tracker",fileName,hash,map);
+                this.startDownload(IP+"/tracker",fileName,hash,map,numParts);
             }else{
                 System.out.println("no se selecciono archivo");
             }

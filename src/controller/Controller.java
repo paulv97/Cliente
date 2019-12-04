@@ -58,8 +58,8 @@ public class Controller implements ActionListener {
         this.view.btnSeleccionarArchivo.setVisible(false);
         this.view.btnDestinoArchivo.setVisible(false);
         try {
-            servidor = (ServerInt) Naming.lookup("rmi://"+InetAddress.getLocalHost().getHostAddress());
-            tracker = (TrackerInt)Naming.lookup("rmi://"+ipTracker);
+            servidor = (ServerInt) Naming.lookup("rmi://"+ipTracker+"/"+InetAddress.getLocalHost().getHostAddress());
+            tracker = (TrackerInt)Naming.lookup("rmi://"+ipTracker+"/tracker");
             cliente = new Cliente(tracker);
         } catch (UnknownHostException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
