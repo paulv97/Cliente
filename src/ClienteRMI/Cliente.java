@@ -38,6 +38,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class Cliente extends UnicastRemoteObject implements ClientInt {
 
     private final int bytesize= 60000;
+    private static final long serialVersionUID = 1L;
     private Map<Integer, Object[]> map;
     private String hash;
     private TrackerInt tracker;

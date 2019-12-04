@@ -64,10 +64,11 @@ public class Controller implements ActionListener {
             java.rmi.registry.LocateRegistry.createRegistry(1099);
             ServerInt server = new Server();
             InetAddress address = InetAddress.getLocalHost();
-            Naming.rebind("rmi://"+ipTracker+"/"+address.getHostAddress(),server);
+            Naming.rebind("rmi://"+address.getHostAddress()+"/"+address.getHostAddress(),server);
             System.out.println("Servidor Listo");
             tracker = (TrackerInt)Naming.lookup("rmi://"+ipTracker+"/tracker");
             cliente = new Cliente(tracker);
+            //Naming.rebind("rmi://"+address.getHostAddress()+"/"+address.getHostAddress()+"C",cliente);
         } catch (UnknownHostException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NotBoundException ex) {

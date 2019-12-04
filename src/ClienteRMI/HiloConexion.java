@@ -46,7 +46,7 @@ public class HiloConexion  extends Thread{
     public synchronized void conectarServer(){
        // while(true){
             try {
-                servidor = (ServerInt) Naming.lookup("rmi://"+ipTracker+"/"+ipServer);
+                servidor = (ServerInt) Naming.lookup("rmi://"+ipServer+"/"+ipServer);
 
                 servidor.transferGroup(cliente, k, i,numConjuntos , fileName);
 
