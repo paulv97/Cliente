@@ -82,6 +82,7 @@ public class TorrentView extends javax.swing.JFrame {
         btnNombreTorrent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/explorer.png"))); // NOI18N
 
         btnCrearTorrent.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/process.png"))); // NOI18N
+        btnCrearTorrent.setToolTipText("Crear .torrent");
 
         javax.swing.GroupLayout pnlGeneracionTorrentLayout = new javax.swing.GroupLayout(pnlGeneracionTorrent);
         pnlGeneracionTorrent.setLayout(pnlGeneracionTorrentLayout);
@@ -143,6 +144,7 @@ public class TorrentView extends javax.swing.JFrame {
         btnDestinoArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/explorer.png"))); // NOI18N
 
         btnDescargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/download.png"))); // NOI18N
+        btnDescargar.setToolTipText("Descargar archivo");
         btnDescargar.setPreferredSize(new java.awt.Dimension(88, 84));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
