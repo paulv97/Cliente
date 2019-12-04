@@ -55,7 +55,7 @@ public class HiloConexion  extends Thread{
 
             } catch (Exception ex) {
                 try {
-                    ipServer = tracker.getAltAddress(k, fileName);
+                    ipServer = tracker.getAltAddress(ipServer, fileName);
                     HiloConexion hilo = new HiloConexion(ipServer,tracker,fileName,k,cliente,numConjuntos,i);
                     hilo.start();
                 }catch (RemoteException e){ }

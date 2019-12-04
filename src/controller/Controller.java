@@ -66,7 +66,7 @@ public class Controller implements ActionListener {
         this.view.jLabel6.setVisible(false);
         try {
 
-            java.rmi.registry.LocateRegistry.createRegistry(1099);  //Si es tracker la linea se comenta, si no, se descomenta
+            //java.rmi.registry.LocateRegistry.createRegistry(1099);  //Si es tracker la linea se comenta, si no, se descomenta
             ServerInt server = new Server();
             InetAddress address = InetAddress.getLocalHost();
             Naming.rebind("rmi://"+localIP+"/"+localIP,server);

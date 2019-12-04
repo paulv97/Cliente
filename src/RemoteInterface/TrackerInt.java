@@ -8,7 +8,7 @@ public interface TrackerInt extends Remote {
 
     String[] getAddress(String FileName) throws RemoteException;
 
-    String getAltAddress(int index,String FileName) throws RemoteException;
+    String getAltAddress(String failedIP,String FileName) throws RemoteException;
 
     void updateAddress(String IP,String FileName)throws RemoteException;
 
