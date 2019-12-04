@@ -27,6 +27,7 @@ public class HiloConexion  extends Thread{
     String fileName;
     int k,numConjuntos,i;
     Cliente cliente;
+    String ipTracker = "";
     public HiloConexion(String ipServer, TrackerInt tracker,String fileName, int k,Cliente cliente,int numConjuntos, int i){
         this.ipServer = ipServer;
         this.tracker = tracker;
@@ -45,14 +46,16 @@ public class HiloConexion  extends Thread{
     public synchronized void conectarServer(){
        // while(true){
             try {
-                servidor = (ServerInt) Naming.lookup("rmi://"+ipServer);
+                servidor = (ServerInt) Naming.lookup("rmi://"+ipTracker+"/"+ipServer);
 
                 servidor.transferGroup(cliente, k, i,numConjuntos , fileName);
 
                 //servidor.transferGroup(client, MIN_PRIORITY, MIN_PRIORITY, NORM_PRIORITY, fileName);
 
             } catch (Exception ex) {
-                ipServer = tracker.getAltAddress(0, fileName);
+                try {
+                    ipServer = tracker.getAltAddress(0, fileName);
+                }catch (RemoteException e){ }
                 //ex.printStackTrace();
             } 
        // }

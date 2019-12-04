@@ -38,7 +38,9 @@ public class Server extends UnicastRemoteObject implements ServerInt {
 
                 situacion_archivo = client.sendData(sendBytes, in,num);
 
-                situacion_archivo = client.sendData(sendBytes,in, num);
+                ///situacion_archivo = client.sendData(sendBytes,in, num);
+
+                System.out.println("Enviada parte: "+num);
 
                 if (situacion_archivo){
                     archivo_enviar.skip((numPeers -1)*bytesize);
