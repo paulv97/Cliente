@@ -45,6 +45,7 @@ public class HiloControlArchivo extends Thread{
             }
             InetAddress address = InetAddress.getLocalHost();
             tracker.updateAddress(address.getHostAddress(),fileName);
+            System.out.println("Archivo descargado");
         }catch (IOException e){
             e.printStackTrace();
         }finally {

@@ -81,6 +81,7 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
             if(calculatedHash.equals(controlHash)){
                 Object [] array = {recievedData,len};
                 map.put(numPart,array);
+                System.out.println("Recibida parte: "+numPart+"\n");
                 return true;
             }
             else{
@@ -204,7 +205,7 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
                 //Cliente client = new Cliente(fileName,map,hash);
 
                 InetAddress address = InetAddress.getLocalHost();
-                Naming.rebind("rmi://"+IP+"/"+address.getHostAddress(),this);
+                Naming.rebind("rmi://"+address.getHostAddress()+"/"+address.getHostAddress(),this);
                 System.out.println("Cliente remoto listo");
                 this.startDownload(IP+"/tracker",fileName,hash,map,numParts);
             }else{
