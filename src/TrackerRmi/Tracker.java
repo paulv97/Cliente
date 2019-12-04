@@ -53,15 +53,15 @@ public class Tracker extends UnicastRemoteObject implements TrackerInt {
 
     @Override
     public String getAltAddress(int index, String FileName)throws RemoteException {
-        return getIP(0, FileName);
+        return getIP(index, FileName);
     }
 
-    public synchronized String getIP(int actualPosition, String FileName) {
+    public synchronized String getIP(int failedIndex, String FileName) {
         fileInf = archivosDisponibles.get(FileName);
-        if (actualPosition + 1 >= fileInf.getListaIPs().size()) {
-            actualPosition = -1;
+        if (failedIndex + 1 >= fileInf.getListaIPs().size()) {
+            failedIndex = -1;
         }
-        return fileInf.getListaIPs().get(actualPosition + 1);
+        return fileInf.getListaIPs().get(failedIndex + 1);
     }
 
     @Override

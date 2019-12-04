@@ -77,17 +77,17 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
         byte [] trash = new byte[bytesize];
         String calculatedHash="";
         String controlHash="";
-        calculatedHash = SHA1(recievedData);
-        controlHash = hash.substring(20*numPart,20*(numPart+1));
-            if(calculatedHash.equals(controlHash)){
+        //calculatedHash = SHA1(recievedData);
+        //controlHash = hash.substring(20*numPart,20*(numPart+1));
+            //if(calculatedHash.equals(controlHash)){
                 Object [] array = {recievedData,len};
                 map.put(numPart,array);
                 System.out.println("Recibida parte: "+numPart+"\n");
                 return true;
-            }
+            /*}
             else{
                 return false;
-            }
+            }*/
     }
 
     public boolean copyFile(String fromFile, String toFile) {

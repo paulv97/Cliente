@@ -33,7 +33,7 @@ public class Main {
         //System.setSecurityManager(new SecurityManager());
         Socket getAddress = new Socket("www.google.com", 80);
         InetAddress address = InetAddress.getByName(getAddress.getLocalAddress().toString().split("/")[1]);
-        localIP=address.toString().substring(1,localIP.toString().length());
+        localIP=address.toString().substring(1,address.toString().length());
         getAddress.close();
         Controller ctrl = new Controller(new TorrentView());
         ctrl.init();
