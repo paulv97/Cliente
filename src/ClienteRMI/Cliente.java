@@ -12,6 +12,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 
+import static main.Main.localIP;
 import static util.SHA1.SHA1;
 import java.io.File;
 import java.io.FileInputStream;
@@ -205,7 +206,7 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
                 //Cliente client = new Cliente(fileName,map,hash);
 
                 InetAddress address = InetAddress.getLocalHost();
-                Naming.rebind("rmi://"+address.getHostAddress()+"/"+address.getHostAddress(),this);
+                Naming.rebind("rmi://"+localIP+"/"+localIP,this);
                 System.out.println("Cliente remoto listo");
                 this.startDownload(IP+"/tracker",fileName,hash,map,numParts);
             }else{

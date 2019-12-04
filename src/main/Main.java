@@ -27,14 +27,14 @@ public class Main {
 
     private static final int PUERTO = 1099;
     public static final String IP="192.168.0.100";
-    public static InetAddress localIP = null;
+    public static String localIP = null;
 
     public static void main(String[] args) throws UnknownHostException, IOException {
         //System.setSecurityManager(new SecurityManager());
         Socket getAddress = new Socket("www.google.com", 80);
-        localIP = InetAddress.getByName(getAddress.getLocalAddress().toString().split("/")[1]);
+        InetAddress address = InetAddress.getByName(getAddress.getLocalAddress().toString().split("/")[1]);
+        localIP=address.toString().substring(1,localIP.toString().length());
         getAddress.close();
-        System.setProperty("java.rmi.server.hostname",InetAddress.getLocalHost().getHostAddress());
         Controller ctrl = new Controller(new TorrentView());
         ctrl.init();
     }

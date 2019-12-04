@@ -109,7 +109,7 @@ public class Tracker extends UnicastRemoteObject implements TrackerInt {
         String data = "";
         try {
             BufferedInputStream archivo = new BufferedInputStream(new FileInputStream(nombre));
-            byte[] ar = new byte[40000];
+            byte[] ar = new byte[60000];
             int in;
             while ((in = archivo.read(ar)) != -1)
                 data += SHA1.SHA1(ar);
