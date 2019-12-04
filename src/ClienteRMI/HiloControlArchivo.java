@@ -5,7 +5,7 @@ import RemoteInterface.TrackerInt;
 import java.io.*;
 import java.net.InetAddress;
 import java.util.Map;
-
+import static main.Main.localIP;
 public class HiloControlArchivo extends Thread{
 
     Map<Integer,Object[]> map;
@@ -43,8 +43,8 @@ public class HiloControlArchivo extends Thread{
                     continue;
                 }
             }
-            InetAddress address = InetAddress.getLocalHost();
-            tracker.updateAddress(address.getHostAddress(),fileName);
+            //InetAddress address = InetAddress.getLocalHost();
+            tracker.updateAddress(localIP.toString(),fileName);
             System.out.println("Archivo descargado");
         }catch (IOException e){
             e.printStackTrace();
