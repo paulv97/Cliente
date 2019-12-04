@@ -3,7 +3,9 @@ package ClienteRMI;
 import static C_S_RMI.main.IP;
 import RemoteInterface.ClientInt;
 import RemoteInterface.TrackerInt;
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -13,8 +15,10 @@ import java.util.Map;
 import static util.SHA1.SHA1;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -139,10 +143,20 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
             copyFile(path, "./.clonedFiles/"+name);
             int numPartes = (int)Math.ceil( (new File("./.clonedFiles/"+name).length()) / 60000);
             try {
-                //necesito ver como me conecto al torrent, obtener direccion ip del torrent sin tener un .torrent de donde leer.
+                String data = "";
+                data+=name+"\n";
+                data += codifyFile("./.clonedFiles/"+name+"\n");
+                data+=numPartes;
                 tracker.createTorrent(name,InetAddress.getLocalHost().getHostAddress(),numPartes);
-                dir.setText(path);
-                nom.setText(name);
+                String []a = name.split("\\.");
+                String ruta = a[0]+".torrent";
+                File archivo = new File(ruta);
+                BufferedWriter bw;
+                bw = new BufferedWriter(new FileWriter(archivo));
+                bw.write(data);
+                bw.close();
+                dir.setText(archivo.getPath());
+                nom.setText(ruta);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "NO SE HA CREADO TORRENT. HA OCURRIDO UN ERROR", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
@@ -150,6 +164,20 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
             JOptionPane.showMessageDialog(null, "NO HA SELECCIONADO ARCHIVO", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         
+    }
+    
+    public String codifyFile(String nombre) throws IOException{
+        String data = "";
+        try {
+            BufferedInputStream archivo = new BufferedInputStream(new FileInputStream(nombre));
+            byte[] ar = new byte[40000];
+            int in;
+            while ((in=archivo.read(ar))!=-1)
+                data += util.SHA1.SHA1(ar);
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return data;
     }
 
     public void download (String pathArchivo){
