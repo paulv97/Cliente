@@ -33,6 +33,8 @@ import javax.swing.JOptionPane;
 import ServerRMI.Server;
 import view.TorrentView;
 import static main.Main.IP;
+import static main.Main.localIP;
+
 /**
  *
  * @author Jose
@@ -67,7 +69,7 @@ public class Controller implements ActionListener {
             //java.rmi.registry.LocateRegistry.createRegistry(1099);  //Si es tracker la linea se comenta, si no, se descomenta
             ServerInt server = new Server();
             InetAddress address = InetAddress.getLocalHost();
-            Naming.rebind("rmi://"+address.getHostAddress()+"/"+address.getHostAddress(),server);
+            Naming.rebind("rmi://"+localIP+"/"+localIP,server);
             System.out.println("Servidor Listo");
             tracker = (TrackerInt)Naming.lookup("rmi://"+ipTracker+"/tracker");
             cliente = new Cliente(tracker);

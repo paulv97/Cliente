@@ -29,7 +29,7 @@ public class HiloControlArchivo extends Thread{
 
     private synchronized void escribir(){
         try {
-            final File newFile = new File( ".\\.clonedFiles\\"+fileName);
+            final File newFile = new File( "./.clonedFiles/"+fileName);
             bosC = new BufferedOutputStream(new FileOutputStream(fileName,true));
             bosS = new BufferedOutputStream(new FileOutputStream(newFile,true));
             int i = 0;

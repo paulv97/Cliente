@@ -6,6 +6,11 @@
 package main;
 
 import controller.Controller;
+
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.rmi.AlreadyBoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -22,8 +27,14 @@ public class Main {
 
     private static final int PUERTO = 1099;
     public static final String IP="192.168.0.100";
-    public static void main(String[] args) {
+    public static InetAddress localIP = null;
+
+    public static void main(String[] args) throws UnknownHostException, IOException {
         //System.setSecurityManager(new SecurityManager());
+        Socket getAddress = new Socket("www.google.com", 80);
+        localIP = InetAddress.getByName(getAddress.getLocalAddress().toString().split("/")[1]);
+        getAddress.close();
+        System.setProperty("java.rmi.server.hostname",InetAddress.getLocalHost().getHostAddress());
         Controller ctrl = new Controller(new TorrentView());
         ctrl.init();
     }
