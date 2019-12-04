@@ -53,10 +53,11 @@ public class Controller implements ActionListener {
         this.view.btnSeleccionarArchivoTorrent.addActionListener(this);
         this.view.setLocationRelativeTo(null);
         this.view.setVisible(true);
-        this.view.txtNombreTorrent.setEditable(false);
         this.view.btnNombreTorrent.setVisible(false);
         this.view.btnSeleccionarArchivo.setVisible(false);
         this.view.btnDestinoArchivo.setVisible(false);
+        this.view.txtDestinoArchivo.setVisible(false);
+        this.view.jLabel6.setVisible(false);
         try {
             servidor = (ServerInt) Naming.lookup("rmi://"+InetAddress.getLocalHost().getHostAddress());
             tracker = (TrackerInt)Naming.lookup("rmi://"+ipTracker);
@@ -110,13 +111,13 @@ public class Controller implements ActionListener {
         
     }
     
-    private void seleccionarDestinoTorrent() {
+   /* private void seleccionarDestinoTorrent() {
         
     }
     
     private void ingresarNombreTorrent() {
         
-    }
+    }*/
     
     private void seleccionarArchivoTorrent() {
         path =  cliente.selectFile();
