@@ -5,7 +5,6 @@
  */
 package controller;
 
-import static C_S_RMI.main.IP;
 import ClienteRMI.Cliente;
 import RemoteInterface.ServerInt;
 import RemoteInterface.TrackerInt;
@@ -27,8 +26,10 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import view.TorrentView;
 
+import ServerRMI.Server;
+import view.TorrentView;
+import static main.Main.IP;
 /**
  *
  * @author Jose
@@ -36,7 +37,7 @@ import view.TorrentView;
 public class Controller implements ActionListener {
     private TorrentView view;
     private ServerInt servidor;
-    private final String ipTracker="";
+    private final String ipTracker=IP;
     private TrackerInt tracker;
     private Cliente cliente;
     private String path ;
@@ -59,7 +60,12 @@ public class Controller implements ActionListener {
         this.view.txtDestinoArchivo.setVisible(false);
         this.view.jLabel6.setVisible(false);
         try {
-            servidor = (ServerInt) Naming.lookup("rmi://"+ipTracker+"/"+InetAddress.getLocalHost().getHostAddress());
+
+            java.rmi.registry.LocateRegistry.createRegistry(1099);
+            ServerInt server = new Server();
+            InetAddress address = InetAddress.getLocalHost();
+            Naming.rebind("rmi://"+ipTracker+"/"+address.getHostAddress(),server);
+            System.out.println("Servidor Listo");
             tracker = (TrackerInt)Naming.lookup("rmi://"+ipTracker+"/tracker");
             cliente = new Cliente(tracker);
         } catch (UnknownHostException ex) {

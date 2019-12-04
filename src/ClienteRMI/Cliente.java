@@ -1,6 +1,6 @@
 package ClienteRMI;
 
-import static C_S_RMI.main.IP;
+import static main.Main.IP;
 import RemoteInterface.ClientInt;
 import RemoteInterface.TrackerInt;
 import java.io.BufferedInputStream;
