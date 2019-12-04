@@ -148,7 +148,7 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
             try {
                 String data = "";
                 data+=name+"\n";
-                data += codifyFile("./.clonedFiles/"+name+"\n");
+                data += codifyFile("./.clonedFiles/"+name)+"\n";
                 data+=numPartes;
                 tracker.createTorrent(name,InetAddress.getLocalHost().getHostAddress(),numPartes);
                 String []a = name.split("\\.");
@@ -171,14 +171,16 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
     
     public String codifyFile(String nombre) throws IOException{
         String data = "";
+        File file = new File(nombre);
         try {
-            BufferedInputStream archivo = new BufferedInputStream(new FileInputStream(nombre));
-            byte[] ar = new byte[40000];
+            BufferedInputStream archivo = new BufferedInputStream(new FileInputStream(file));
+            byte[] ar = new byte[60000];
             int in;
             while ((in=archivo.read(ar))!=-1)
                 data += util.SHA1.SHA1(ar);
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
+            ex.printStackTrace();
         }
         return data;
     }
