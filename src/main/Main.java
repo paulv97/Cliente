@@ -23,6 +23,7 @@ public class Main {
     private static final int PUERTO = 1099;
     public static final String IP="192.168.0.100";
     public static void main(String[] args) {
+        //System.setSecurityManager(new SecurityManager());
         Controller ctrl = new Controller(new TorrentView());
         ctrl.init();
     }

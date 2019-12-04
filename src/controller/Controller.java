@@ -20,6 +20,9 @@ import java.net.UnknownHostException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.security.Permission;
+import java.security.Policy;
+import java.security.ProtectionDomain;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -61,7 +64,7 @@ public class Controller implements ActionListener {
         this.view.jLabel6.setVisible(false);
         try {
 
-            java.rmi.registry.LocateRegistry.createRegistry(1099);
+            //java.rmi.registry.LocateRegistry.createRegistry(1099);
             ServerInt server = new Server();
             InetAddress address = InetAddress.getLocalHost();
             Naming.rebind("rmi://"+address.getHostAddress()+"/"+address.getHostAddress(),server);
