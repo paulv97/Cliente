@@ -85,7 +85,7 @@ public class main {
                 InetAddress address = InetAddress.getLocalHost();
                 Naming.rebind("rmi://"+IP+"/"+address.getHostAddress(),client);
                 System.out.println("Cliente remoto listo");
-                client.startDownload(IP+"/tracker",fileName,hash,map);
+                //client.startDownload(IP+"/tracker",fileName,hash,map);
             }else{
                 System.out.println("no se selecciono archivo");
             }
