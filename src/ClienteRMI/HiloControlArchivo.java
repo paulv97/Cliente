@@ -35,7 +35,7 @@ public class HiloControlArchivo extends Thread {
 
     public void setView(TorrentView view) {
         this.view = view;
-        this.view.pbDescarga.setIndeterminate(true);
+        //this.view.pbDescarga.setIndeterminate(true);
     }
 
     private synchronized void escribir() {
@@ -55,14 +55,15 @@ public class HiloControlArchivo extends Thread {
                     System.out.println(" -----------------" + map.size());
                     System.out.println("sadasdasdasdasd" + porcentaje);
                    // this.view.pbDescarga.setValue(porcentaje);
-                    SwingUtilities.invokeLater(new Runnable() {
+                    /*SwingUtilities.invokeLater(new Runnable() {
                         public void run() {
 
                             //Thiill be called on the EDT
                             view.pbDescarga.setValue(porcentaje);
 
                         }
-                    });
+                    });*/
+                    this.view.pbDescarga.setValue(porcentaje);
                     if (i == numPartes) {
                         porcentaje = 100;
                     }
