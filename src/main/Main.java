@@ -26,7 +26,7 @@ import view.TorrentView;
 public class Main {
 
     private static final int PUERTO = 1099;
-    public static final String IP="192.168.0.100";
+    public static final String IP="10.26.25.206";
     public static String localIP = null;
 
     public static void main(String[] args) throws UnknownHostException, IOException {

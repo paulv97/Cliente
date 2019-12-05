@@ -13,7 +13,7 @@ import java.rmi.RemoteException;
 public class MainT {
 
     private static final int PUERTO = 1099;
-    private static final String IP = "192.168.0.100";
+    private static final String IP = "10.26.25.206";
 
     public static void main(String[] args) {
         //Remote remote;

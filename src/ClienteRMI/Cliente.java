@@ -35,6 +35,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import view.TorrentView;
 
 public class Cliente extends UnicastRemoteObject implements ClientInt {
 
@@ -44,13 +45,15 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
     private String hash;
     private TrackerInt tracker;
     private String FileName;
+    private TorrentView view;
     /*public Cliente(String FileName, Map<Integer, Object[]> map, String hash) throws RemoteException {
         this.map=map;
         this.hash=hash;
         this.FileName = FileName;
     }*/
-    public Cliente(TrackerInt tracker)throws RemoteException{
+    public Cliente(TrackerInt tracker,TorrentView view)throws RemoteException{
         this.tracker = tracker;
+        this.view = view;
     }
 
     public void startDownload(String IPNAme,String FileName,String hash,Map<Integer, Object[]> map,int numParts){
@@ -65,6 +68,7 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
                 hilo.start();
             }
             HiloControlArchivo hiloCA = new HiloControlArchivo(map,numParts,FileName,tracker);
+            hiloCA.setView(view);
             hiloCA.start();
             while (hiloCA.isAlive())
                 System.out.println(hiloCA.porcentaje+"%");

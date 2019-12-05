@@ -48,7 +48,7 @@ public class main {
             Cliente client;
             try{
                 tracker = (TrackerInt)Naming.lookup("rmi://"+IP);
-                client = new Cliente(tracker);
+                //client = new Cliente(tracker);
                 //client.createTorrent();
                 //download(client);
             }catch(Exception e){

@@ -6,6 +6,7 @@
 package controller;
 
 import ClienteRMI.Cliente;
+import ClienteRMI.HiloEjecucion;
 import RemoteInterface.ServerInt;
 import RemoteInterface.TrackerInt;
 import java.awt.event.ActionEvent;
@@ -51,7 +52,7 @@ public class Controller implements ActionListener {
         this.view = view;
     }
     private ServerInt server;
-    public void init() {
+    public synchronized void init() {
         this.view.btnSeleccionarArchivo.addActionListener(this);
         this.view.btnCrearTorrent.addActionListener(this);
         this.view.btnDescargar.addActionListener(this);
@@ -73,7 +74,8 @@ public class Controller implements ActionListener {
             Naming.rebind("rmi://"+localIP+"/"+localIP,server);
             System.out.println("Servidor Listo");
             tracker = (TrackerInt)Naming.lookup("rmi://"+ipTracker+"/tracker");
-            cliente = new Cliente(tracker);
+            cliente = new Cliente(tracker,view);
+            
             //Naming.rebind("rmi://"+address.getHostAddress()+"/"+address.getHostAddress()+"C",cliente);
         } catch (UnknownHostException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
@@ -115,9 +117,11 @@ public class Controller implements ActionListener {
         cliente.createTorrent(view.txtArchivo,view.txtNombreTorrent);
     }
     
-    private void descargar() {
+    private synchronized void descargar() {
         if (!path.equals("")){
-            cliente.download(path);
+            HiloEjecucion hilo = new HiloEjecucion(cliente, path);
+            hilo.start();
+            /*cliente.download(path);
             try {
                 Naming.unbind("rmi://" + localIP + "/" + localIP);
                 server = new Server();
@@ -130,7 +134,7 @@ public class Controller implements ActionListener {
                 e.printStackTrace();
             }catch (AlreadyBoundException e){
                 e.printStackTrace();
-            }
+            }*/
         }else{
             JOptionPane.showMessageDialog(null, "NO HA SELECCIONADO ARCHIVO TORRENT","SIN TORRENT", JOptionPane.ERROR_MESSAGE);
         }

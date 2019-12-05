@@ -149,6 +149,8 @@ public class TorrentView extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        pbDescarga.setToolTipText("");
+
         jLabel7.setFont(new java.awt.Font("Raleway", 0, 13)); // NOI18N
         jLabel7.setText("Porcentaje:");
 
