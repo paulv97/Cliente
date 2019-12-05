@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 import static main.Main.localIP;
+import view.TorrentView;
 public class HiloControlArchivo extends Thread{
 
     Map<Integer,Object[]> map;
@@ -16,6 +17,7 @@ public class HiloControlArchivo extends Thread{
     BufferedOutputStream bosS;
     BufferedOutputStream bosC;
     public double porcentaje;
+    TorrentView view;
     public HiloControlArchivo(Map<Integer, Object[]> map, int numPartes, String fileName, TrackerInt tracker) {
         this.map = map;
         this.numPartes = numPartes;
@@ -26,6 +28,10 @@ public class HiloControlArchivo extends Thread{
     @Override
     public void run() {
         escribir();
+    }
+    
+    public void setView(TorrentView view) {
+        this.view = view;
     }
 
     private synchronized void escribir(){
@@ -39,13 +45,14 @@ public class HiloControlArchivo extends Thread{
                 if ((array = map.get(i)) != null) {
                     bosC.write((byte[])array[0],0,(int) array[1]);
                     bosS.write((byte[])array[0],0,(int) array[1]);
-                    long actualSize=newFile.length();
 
-                    porcentaje= (actualSize/numPartes)*100;
+                    porcentaje= (map.size()/numPartes)*100;
 
                     if(i==numPartes)
                         porcentaje=100;
                     i++;
+                    
+                    this.view.pbDescarga.setValue((int) porcentaje);
                 } else {
                     continue;
                 }
