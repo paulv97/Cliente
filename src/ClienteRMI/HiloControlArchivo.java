@@ -4,6 +4,7 @@ import RemoteInterface.TrackerInt;
 
 import java.io.*;
 import java.net.InetAddress;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.Map;
 import static main.Main.localIP;
 public class HiloControlArchivo extends Thread{
@@ -40,7 +41,7 @@ public class HiloControlArchivo extends Thread{
                     bosS.write((byte[])array[0],0,(int) array[1]);
                     long actualSize=newFile.length();
 
-                    porcentaje= (actualSize*100)/numPartes;
+                    porcentaje= (actualSize/numPartes)*100;
 
                     if(i==numPartes)
                         porcentaje=100;

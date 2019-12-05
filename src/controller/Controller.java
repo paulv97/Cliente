@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.UnknownHostException;
+import java.rmi.AlreadyBoundException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -49,7 +50,7 @@ public class Controller implements ActionListener {
     public Controller(TorrentView view) {
         this.view = view;
     }
-    
+    private ServerInt server;
     public void init() {
         this.view.btnSeleccionarArchivo.addActionListener(this);
         this.view.btnCrearTorrent.addActionListener(this);
@@ -67,7 +68,7 @@ public class Controller implements ActionListener {
         try {
 
             //java.rmi.registry.LocateRegistry.createRegistry(1099);  //Si es tracker la linea se comenta, si no, se descomenta
-            ServerInt server = new Server();
+            server = new Server();
             InetAddress address = InetAddress.getLocalHost();
             Naming.rebind("rmi://"+localIP+"/"+localIP,server);
             System.out.println("Servidor Listo");
@@ -117,6 +118,19 @@ public class Controller implements ActionListener {
     private void descargar() {
         if (!path.equals("")){
             cliente.download(path);
+            try {
+                Naming.unbind("rmi://" + localIP + "/" + localIP);
+                server = new Server();
+                Naming.bind("rmi://"+localIP+"/"+localIP,server);
+            }catch (RemoteException e) {
+                e.printStackTrace();
+            } catch (NotBoundException e) {
+                e.printStackTrace();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }catch (AlreadyBoundException e){
+                e.printStackTrace();
+            }
         }else{
             JOptionPane.showMessageDialog(null, "NO HA SELECCIONADO ARCHIVO TORRENT","SIN TORRENT", JOptionPane.ERROR_MESSAGE);
         }

@@ -31,6 +31,7 @@ public class MainT {
             //System.setSecurityManager(new SecurityManager());
             Naming.rebind("rmi://" + IP+ "/tracker", new Tracker());
             System.out.println("Servidor escuchando en el puerto " + String.valueOf(PUERTO));
+
         } catch (RemoteException | MalformedURLException  e) {
             e.printStackTrace();
         } catch (IOException e) {

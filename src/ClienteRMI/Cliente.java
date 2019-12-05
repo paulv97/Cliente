@@ -70,8 +70,8 @@ public class Cliente extends UnicastRemoteObject implements ClientInt {
                 System.out.println(hiloCA.porcentaje+"%");
             //hiloCA.porcentaje
         }catch (Exception e){
-            
         }
+
     }
 
     @Override
