@@ -152,19 +152,15 @@ public class TorrentView extends javax.swing.JFrame {
         pbDescarga.setToolTipText("");
 
         jLabel7.setFont(new java.awt.Font("Raleway", 0, 13)); // NOI18N
-        jLabel7.setText("Porcentaje:");
+        jLabel7.setText("Porcentaje Descargado:");
 
         jLabel8.setFont(new java.awt.Font("Raleway", 0, 13)); // NOI18N
-        jLabel8.setText("Descargado:");
 
         jLabel9.setFont(new java.awt.Font("Raleway", 0, 13)); // NOI18N
-        jLabel9.setText("Vel. Bajada:");
 
         jLabel10.setFont(new java.awt.Font("Raleway", 0, 13)); // NOI18N
-        jLabel10.setText("Subida:");
 
         jLabel11.setFont(new java.awt.Font("Raleway", 0, 13)); // NOI18N
-        jLabel11.setText("Vel. Subida");
 
         lblProcentaje.setFont(new java.awt.Font("Raleway", 1, 13)); // NOI18N
         lblProcentaje.setText("0%");

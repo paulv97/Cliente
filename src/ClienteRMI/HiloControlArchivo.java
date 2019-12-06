@@ -66,7 +66,7 @@ public class HiloControlArchivo extends Thread {
                         }
                     });*/
                     this.view.pbDescarga.setValue(porcentaje);
-                    this.view.lblDescargado.setText(porcentaje + "%");
+                    this.view.lblProcentaje.setText(porcentaje + "%");
                     if (i == numPartes) {
                         porcentaje = 100;
                     }

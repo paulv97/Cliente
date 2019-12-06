@@ -443,7 +443,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Raleway" size="13" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Porcentaje:"/>
+                <Property name="text" type="java.lang.String" value="Porcentaje Descargado:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
@@ -451,7 +451,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Raleway" size="13" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Descargado:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel9">
@@ -459,7 +458,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Raleway" size="13" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Vel. Bajada:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel10">
@@ -467,7 +465,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Raleway" size="13" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Subida:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel11">
@@ -475,7 +472,6 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Raleway" size="13" style="0"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Vel. Subida"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblProcentaje">

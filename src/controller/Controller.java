@@ -53,6 +53,11 @@ public class Controller implements ActionListener {
     }
     private ServerInt server;
     public synchronized void init() {
+        this.view.lblDescargado.setVisible(false);
+        this.view.lblSubida.setVisible(false);
+        this.view.lblVelSubida.setVisible(false);
+        this.view.lblVelBajada.setVisible(false);
+        
         this.view.btnSeleccionarArchivo.addActionListener(this);
         this.view.btnCrearTorrent.addActionListener(this);
         this.view.btnDescargar.addActionListener(this);
