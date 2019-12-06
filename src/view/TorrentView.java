@@ -48,15 +48,7 @@ public class TorrentView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         pbDescarga = new javax.swing.JProgressBar();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         lblProcentaje = new javax.swing.JLabel();
-        lblDescargado = new javax.swing.JLabel();
-        lblVelBajada = new javax.swing.JLabel();
-        lblSubida = new javax.swing.JLabel();
-        lblVelSubida = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -152,30 +144,10 @@ public class TorrentView extends javax.swing.JFrame {
         pbDescarga.setToolTipText("");
 
         jLabel7.setFont(new java.awt.Font("Raleway", 0, 13)); // NOI18N
-        jLabel7.setText("Porcentaje Descargado:");
-
-        jLabel8.setFont(new java.awt.Font("Raleway", 0, 13)); // NOI18N
-
-        jLabel9.setFont(new java.awt.Font("Raleway", 0, 13)); // NOI18N
-
-        jLabel10.setFont(new java.awt.Font("Raleway", 0, 13)); // NOI18N
-
-        jLabel11.setFont(new java.awt.Font("Raleway", 0, 13)); // NOI18N
+        jLabel7.setText("Progreso de descarga:");
 
         lblProcentaje.setFont(new java.awt.Font("Raleway", 1, 13)); // NOI18N
         lblProcentaje.setText("0%");
-
-        lblDescargado.setFont(new java.awt.Font("Raleway", 1, 13)); // NOI18N
-        lblDescargado.setText("0%");
-
-        lblVelBajada.setFont(new java.awt.Font("Raleway", 1, 13)); // NOI18N
-        lblVelBajada.setText("0%");
-
-        lblSubida.setFont(new java.awt.Font("Raleway", 1, 13)); // NOI18N
-        lblSubida.setText("0%");
-
-        lblVelSubida.setFont(new java.awt.Font("Raleway", 1, 13)); // NOI18N
-        lblVelSubida.setText("0%");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -186,27 +158,9 @@ public class TorrentView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pbDescarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblVelSubida))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblProcentaje))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblDescargado))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jLabel10))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblSubida)
-                                    .addComponent(lblVelBajada))))
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblProcentaje)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -219,22 +173,6 @@ public class TorrentView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(lblProcentaje))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(lblDescargado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(lblVelBajada))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(lblSubida))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(lblVelSubida))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -281,12 +219,10 @@ public class TorrentView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDestinoArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(pnlDescargaArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlDescargaArchivoLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(btnDescargar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 24, Short.MAX_VALUE))
+                .addGroup(pnlDescargaArchivoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnDescargar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -313,7 +249,7 @@ public class TorrentView extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(pnlDescargaArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pack();
@@ -362,23 +298,15 @@ public class TorrentView extends javax.swing.JFrame {
     public javax.swing.JButton btnSeleccionarArchivo;
     public javax.swing.JButton btnSeleccionarArchivoTorrent;
     private javax.swing.border.EtchedBorder etchedBorder1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     public javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    public javax.swing.JLabel lblDescargado;
     public javax.swing.JLabel lblProcentaje;
-    public javax.swing.JLabel lblSubida;
-    public javax.swing.JLabel lblVelBajada;
-    public javax.swing.JLabel lblVelSubida;
     public javax.swing.JProgressBar pbDescarga;
     private javax.swing.JPanel pnlDescargaArchivo;
     private javax.swing.JPanel pnlGeneracionTorrent;
