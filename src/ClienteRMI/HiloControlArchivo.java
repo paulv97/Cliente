@@ -51,7 +51,9 @@ public class HiloControlArchivo extends Thread {
                     bosC.write((byte[]) array[0], 0, (int) array[1]);
                     bosS.write((byte[]) array[0], 0, (int) array[1]);
 
-                    porcentaje = (map.size() * 100 / numPartes);
+                    porcentaje = porcentaje < 100 
+                            ? (map.size() * 100 / numPartes)
+                            : 100;
                     System.out.println(" -----------------" + map.size());
                     System.out.println("sadasdasdasdasd" + porcentaje);
                    // this.view.pbDescarga.setValue(porcentaje);
@@ -64,6 +66,7 @@ public class HiloControlArchivo extends Thread {
                         }
                     });*/
                     this.view.pbDescarga.setValue(porcentaje);
+                    this.view.lblDescargado.setText(porcentaje + "%");
                     if (i == numPartes) {
                         porcentaje = 100;
                     }
